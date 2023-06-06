@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.recyclerview.MainActivity;
-import com.example.recyclerview.ProductActivity;
 import com.example.recyclerview.ProductDetailActivity;
 import com.example.recyclerview.R;
 import com.example.recyclerview.model.Product;
@@ -46,20 +44,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         //else: bind data to the holder
 
         holder.image.setImageResource(product.getImg());
+        holder.image.setTag(product.getImg());
         holder.description.setText(product.getDescription());
         holder.name.setText(product.getName());
 
-        holder.image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProductActivity activity = (ProductActivity) v.getContext();
-                Intent i = new Intent(activity, ProductDetailActivity.class);
-                String productName = holder.name.getText().toString();
-                String productDes = holder.description.getText().toString();
-                int image = v.getId();
-                i.putExtra("category", image);
-                activity.startActivity(i);
-            }
+        holder.image.setOnClickListener(v -> {
+
+            Intent i = new Intent(v.getContext(), ProductDetailActivity.class);
+            String productName = holder.name.getText().toString();
+            String productDes = holder.description.getText().toString();
+            int image = (int)holder.image.getTag();
+            i.putExtra("image", image);
+            i.putExtra("description", productDes);
+            i.putExtra("name", productName);
+            v.getContext().startActivity(i);
         });
     }
 
