@@ -1,5 +1,6 @@
 package com.example.recyclerview.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recyclerview.MainActivity;
+import com.example.recyclerview.ProductActivity;
 import com.example.recyclerview.R;
 import com.example.recyclerview.model.Category;
 
@@ -27,7 +30,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category, parent, false);
         return new CategoryViewHolder(view);
 
     }
@@ -37,7 +40,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Category category = mListCategory.get(position);
 
         //if(null) => do nothing
-        if(category == null) {
+        if (category == null) {
             return;
         }
 
@@ -45,6 +48,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         holder.imageView.setImageResource(category.getImg());
         holder.textView.setText(category.getName());
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) v.getContext();
+                Intent i = new Intent(mainActivity, ProductActivity.class);
+                String categoryName = holder.textView.getText().toString();
+                i.putExtra("category", categoryName);
+                mainActivity.startActivity(i);
+            }
+        });
     }
 
     //Return number of item
@@ -60,8 +73,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.img_item);
-            textView = (TextView) itemView.findViewById(R.id.tv_item_name);
+            imageView = itemView.findViewById(R.id.img_item);
+            textView = itemView.findViewById(R.id.tv_item_name);
         }
     }
 }

@@ -25,14 +25,40 @@
             android:text="Category"
             android:textColor="@color/white"
             android:textSize="26sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_items"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp"
+            >
+                <ImageView
+                    android:id="@+id/img_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/cat_food_pro2" />
+
+                <TextView
+                    android:id="@+id/tv_item_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
 

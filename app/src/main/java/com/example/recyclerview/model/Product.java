@@ -6,13 +6,11 @@ public class Product {
     private int img;
     private String name;
     private String description;
-    private Category category;
 
-    public Product(int img, String name, String description, Category category) {
+    public Product(int img, String name, String description) {
         this.img = img;
         this.name = name;
         this.description = description;
-        this.category = category;
     }
 
     public int getImg() {
@@ -37,13 +35,5 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }
