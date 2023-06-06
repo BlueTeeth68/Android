@@ -1,4 +1,4 @@
-package com.example.recyclerview.Model;
+package com.example.recyclerview.model;
 
 import java.util.ArrayList;
 import java.util.List;
